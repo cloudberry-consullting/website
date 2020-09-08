@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Cloudberry Consulting</title>
+    <style>
+     html, body {
+       font-family: sans, arial, helvetica;
+       font-size: 16px;
+       margin: 32px;
+     }
+
+     h1 {
+       font-size: 3em
+     }
+    </style>
+    <script>
+     var content = {
+       en: {
+         body: 'We help you find Nordic game development talent.'
+       },
+       cn: {
+         body: '什么什么什么'
+       },
+       sv: {
+         body: 'Blaha blaha'
+       }
+     }
+    </script>
+  </head>
+  <body>
+    <h1>Cloudberry Consulting</h1>
+    <section>
+      <div id="content"></div>
+      <p>
+        <a href="mailto:info@cloudberry-consulting.com">info@cloudberry-consulting.com</a>
+      </p>
+    </section>
+
+    <script>
+     var selectedLanguage = 'en';
+
+     var contentElement = document.getElementById('content');
+     contentElement.innerText = content[selectedLanguage].body;
+    </script>
+  </body>
+</html>
