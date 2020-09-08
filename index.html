@@ -3,45 +3,76 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Cloudberry Consulting</title>
-    <style>
-     html, body {
-       font-family: sans, arial, helvetica;
-       font-size: 16px;
-       margin: 32px;
+    <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <script>
+     window.$ = document.querySelectorAll.bind(document);
+     NodeList.prototype.__proto__ = Array.prototype;
+     NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
+       this.forEach(function (elem, i) {
+         elem.on(name, fn);
+       });
+     }
+     Node.prototype.on = window.on = function (name, fn) {
+       this.addEventListener(name, fn);
      }
 
-     h1 {
-       font-size: 3em
-     }
-    </style>
-    <script>
+     var selectedLanguage = 'en';
      var content = {
        en: {
-         body: 'We help you find Nordic game development talent.'
+         companyName: 'Cloudberry Consulting',
+         body: 'We provide you a direct link to Nordic game art design talent.'
        },
-       cn: {
-         body: '什么什么什么'
+       zh: {
+         companyName: '乐瑞咨询',
+         body: '我们为您提供北欧游戏美术设计人才外包的一站式解决方案。'
        },
        sv: {
-         body: 'Blaha blaha'
+         companyName: 'Cloudberry Consulting',
+         body: 'Vi är din direktlänk till talang inom nordisk speldesign.'
        }
+     }
+
+     function selectLanguage(evt) {
+       selectedLanguage = evt.target.id;
+
+       $('#content')[0].innerText = content[selectedLanguage].body;
+       $("#companyName")[0].innerText = content[selectedLanguage].companyName;
+       $("button").forEach((b) => {
+         b.classList.remove('selected');
+       });
+       $("#" + selectedLanguage)[0].classList.add('selected');
+
      }
     </script>
   </head>
   <body>
-    <h1>Cloudberry Consulting</h1>
-    <section>
+    <div class="main">
+      <nav></nav>
+      <div class="header">
+        <h1 id="companyName">Cloudberry Consulting</h1>
+      </div>
       <div id="content"></div>
-      <p>
+      <div class="contact">
         <a href="mailto:info@cloudberry-consulting.com">info@cloudberry-consulting.com</a>
-      </p>
-    </section>
+      </div>
+      <div class="lang-select">
+        <div>
+          <button class="lang-select__button" id="en">English</button>
+        </div>
+        <div>
+          <button class="lang-select__button" id="zh">中文</button>
+        </div>
+        <div>
+          <button class="lang-select__button" id="sv">Svenska</button>
+        </div>
 
+      </div>
+      </section>
+    </div>
     <script>
-     var selectedLanguage = 'en';
+     $('button').on('click', selectLanguage);
 
-     var contentElement = document.getElementById('content');
-     contentElement.innerText = content[selectedLanguage].body;
+     selectLanguage({ target: { id: 'en' } } );
     </script>
   </body>
 </html>
