@@ -5,46 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cloudberry Consulting</title>
     <link rel="stylesheet" href="./styles.css" type="text/css" />
-    <script>
-     window.$ = document.querySelectorAll.bind(document);
-     NodeList.prototype.__proto__ = Array.prototype;
-     NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
-       this.forEach(function (elem, i) {
-         elem.on(name, fn);
-       });
-     }
-     Node.prototype.on = window.on = function (name, fn) {
-       this.addEventListener(name, fn);
-     }
-
-     var selectedLanguage = 'en';
-     var content = {
-       en: {
-         companyName: 'Cloudberry Consulting',
-         body: 'We provide you a direct link to Nordic game art design talent.'
-       },
-       zh: {
-         companyName: '乐瑞咨询',
-         body: '我们为您提供北欧游戏美术设计人才外包的一站式解决方案。'
-       },
-       sv: {
-         companyName: 'Cloudberry Consulting',
-         body: 'Vi är din direktlänk till talang inom nordisk speldesign.'
-       }
-     }
-
-     function selectLanguage(evt) {
-       selectedLanguage = evt.target.id;
-
-       $('#content')[0].innerText = content[selectedLanguage].body;
-       $("#companyName")[0].innerText = content[selectedLanguage].companyName;
-       $("button").forEach((b) => {
-         b.classList.remove('selected');
-       });
-       $("#" + selectedLanguage)[0].classList.add('selected');
-
-     }
-    </script>
+    <script src="./app.js"></script>
   </head>
   <body>
     <div class="main">
@@ -71,9 +32,9 @@
       </section>
     </div>
     <script>
-     $('button').on('click', selectLanguage);
+      $$('button').on('click', window.App.selectLanguage);
 
-     selectLanguage({ target: { id: 'en' } } );
+      window.App.selectLanguage({ target: { id: 'en' } } );
     </script>
   </body>
 </html>
